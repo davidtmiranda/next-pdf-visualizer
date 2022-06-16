@@ -25,6 +25,7 @@ interface JSXElementAttachment extends Exclude<AttachmentBase, "type"> {
   type: string;
   data: any;
   pageNumber: number;
+  // id: string;
 }
 
 interface ImageAttachment extends AttachmentBase {

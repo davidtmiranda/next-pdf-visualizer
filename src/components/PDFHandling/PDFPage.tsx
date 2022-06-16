@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Draggable, { DraggableEvent } from "react-draggable";
 import { render } from "../../utils/render";
 
@@ -26,6 +26,10 @@ export const PDFPage = ({
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [width, setWidth] = useState((dimensions && dimensions.width) || 0);
   const [height, setHeight] = useState((dimensions && dimensions.height) || 0);
+
+  React.useEffect(() => {
+    console.log({ pageElements });
+  }, [pageElements]);
 
   useEffect(() => {
     const renderPage = async (p: Promise<any>) => {
@@ -61,7 +65,12 @@ export const PDFPage = ({
   const elementWidth = 200;
   const elementHeight = 56;
 
-  function onMove(e: DraggableEvent, data: any, attachmentIndex: number) {
+  function onMove(
+    e: DraggableEvent,
+    data: any,
+    attachmentIndex: number,
+    pageNumber: number
+  ) {
     const xParsed = Number((data.x as number).toFixed(2));
     const yParsed = Number((data.y as number).toFixed(2));
 
@@ -71,7 +80,7 @@ export const PDFPage = ({
     };
 
     const { x, y } = centerCoordinatesOfElementAdded;
-    updateElement && updateElement(attachmentIndex, { x, y }, pageIndex);
+    updateElement && updateElement(attachmentIndex, { x, y }, pageNumber);
   }
 
   const RightBorder = width - elementWidth;
@@ -97,13 +106,24 @@ export const PDFPage = ({
               if (lastX === -1 || lastY === -1) {
                 updateElement(attachmentIndex, { x, y }, pageIndex);
               }
-
+              console.log({
+                sr: pageIndex + 1 === element.pageNumber,
+                pageIndex: pageIndex + 1,
+                elementPageNumber: element.pageNumber,
+              });
               return (
                 <>
                   {render(
-                    pageIndex + 1 === element.pageNumber && (
+                    true && (
                       <Draggable
-                        onStop={(e, data) => onMove(e, data, attachmentIndex)}
+                        onStop={(e, data) =>
+                          onMove(
+                            e,
+                            data,
+                            attachmentIndex,
+                            element.pageNumber - 1
+                          )
+                        }
                         {...{
                           bounds: {
                             top: 0,

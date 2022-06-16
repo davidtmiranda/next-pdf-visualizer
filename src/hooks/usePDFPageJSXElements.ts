@@ -104,7 +104,7 @@ const reducer = (state: State, action: Action) => {
         newAllPageAttachmentsUpdate = allPageAttachments.map(
           (otherPageAttachments, index) =>
             action.pageIndex === index
-              ? pageAttachments.map((oldAttachment, _attachmentIndex) =>
+              ? otherPageAttachments.map((oldAttachment, _attachmentIndex) =>
                   _attachmentIndex === action.attachmentIndex
                     ? { ...oldAttachment, ...action.attachment }
                     : oldAttachment
@@ -143,6 +143,9 @@ export const usePDF_JSXElements = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const { allPageAttachments, pageAttachments } = state;
 
+  console.log("ALLLL", {
+    allPageAttachments,
+  });
   const add = (newAttachment: JSXAttachment) =>
     dispatch({ type: ActionType.ADD_ELEMENT, attachment: newAttachment });
 

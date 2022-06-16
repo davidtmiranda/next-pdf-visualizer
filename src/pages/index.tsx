@@ -262,8 +262,8 @@ export default function Example() {
                                 },
                                 pageNumber: pageIndex + 1,
                                 id: ggID(),
-                                height: -1,
-                                width: -1,
+                                height: 1,
+                                width: 1,
                                 x: -1,
                                 y: -1,
                               });
@@ -343,8 +343,8 @@ export default function Example() {
                                   },
                                   pageNumber: pageIndex + 1,
                                   id: ggID(),
-                                  height: -1,
-                                  width: -1,
+                                  height: 1,
+                                  width: 1,
                                   x: -1,
                                   y: -1,
                                 });
