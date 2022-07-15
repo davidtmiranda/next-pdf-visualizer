@@ -1,3 +1,17 @@
+#PDF Visualizer
+
+This project is a next app sample of a PDF visualizer with handle of draggable components into pdf view.
+
+it uses pdfjslib and others to handle PDF visualization from scratch.
+
+The motivation of the development is the fact that I`m developing a eletronic signature platform and couldn`t find a good pdf library to handle 
+visualization and draggable components iin the way that i needed with pdf files.
+
+It`s not entirely tested and have some code to refactor, but the code is already working.
+
+Hope can help someone white I keep improving the project.
+
+
 # Next.js + Tailwind CSS Example
 
 This example shows how to use [Tailwind CSS](https://tailwindcss.com/) [(v3.0)](https://tailwindcss.com/blog/tailwindcss-v3) with Next.js. It follows the steps outlined in the official [Tailwind docs](https://tailwindcss.com/docs/guides/nextjs).
